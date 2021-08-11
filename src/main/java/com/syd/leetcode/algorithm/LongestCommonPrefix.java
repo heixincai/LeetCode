@@ -1,6 +1,7 @@
 package com.syd.leetcode.algorithm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -60,10 +61,50 @@ public class LongestCommonPrefix {
         return tempStr;
     }
 
+    /**
+     * 取一个单词 s，和后面单词比较，看 s 与每个单词相同的最长前缀是多少！遍历所有单词。
+     */
+    public static String longestCommonPrefix2(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+        String res = strs[0];
+        int i = 1;
+        while (i < strs.length) {
+            while (strs[i].indexOf(res) != 0) {
+                res = res.substring(0, res.length() - 1);
+            }
+            i += 1;
+        }
+        return res;
+    }
+
+    /**
+     * 按字典排序数组，比较第一个，和最后一个单词，有多少前缀相同。
+     */
+    public static String longestCommonPrefix3(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+        StringBuilder res = new StringBuilder();
+        Arrays.sort(strs);
+        // 字符串转数组
+        char[] a = strs[0].toCharArray();
+        char[] b = strs[strs.length - 1].toCharArray();
+        for (int i = 0; i < a.length; i++) {
+            if (i < b.length && a[i] == b[i]) {
+                res.append(a[i]);
+            } else{
+                break;
+            }
+        }
+        return res.toString();
+
+    }
+
+
     public static void main(String[] args) {
         String [] strs = {"flower","flow","flight"};
         String str = longestCommonPrefix(strs);
-        System.out.println(str);
+        String str2 = longestCommonPrefix2(strs);
+        String str3 = longestCommonPrefix3(strs);
+        System.out.println(str + ";" + str2 + ";" + str3);
     }
 
 }
