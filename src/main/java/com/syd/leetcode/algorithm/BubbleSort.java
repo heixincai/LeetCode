@@ -6,7 +6,7 @@ public class BubbleSort {
 
     private static void bubbleSort(int[] nums) {
         int length = nums.length;
-        //外层循环控制比较范围
+        //外层循环控制比较趟数
         for (int i = 0; i < length - 1; ++i) {
             //内层循环控制比较次数
             for (int j = 0; j < length -1 - i ; ++ j) {
